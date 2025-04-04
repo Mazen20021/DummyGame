@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "HittingObject.csproj",
+        "Action": "Start",
+        "DebugTarget": "HittingObject"
+      }
+    ]
+  }
+]
