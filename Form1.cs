@@ -17,6 +17,7 @@ namespace HittingObject
         int HorezontalSpeed = 3;
         int VerticalSpeed = 3;
         int playerHealingSpeed = 1;
+
         bool intialMovement = false;
         bool reached1 = false;
         bool reached2 = false;
@@ -25,15 +26,34 @@ namespace HittingObject
         bool increasedHealth = false;
         bool increasedSpeed = false;
         bool increasedJumb = false;
+        bool eKeyPressed = false;
+        bool increasedArmoured = false;
+
         int increasedHealthCounter = 0;
-        public Form1() { InitializeComponent(); }
+        public Form1()
+        {
+            InitializeComponent();
+            this.DoubleBuffered = true;
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
+                return cp;
+            }
+        }
         private void MainGameEvent(object sender, EventArgs e)
         {
             scoreNum.Text = score.ToString();
 
             Player.Top += jumbSpeed;
 
+            if(increasedArmoured)
+            {
 
+            }
             if (!horezontalPlatForm1.Bounds.IntersectsWith(wall6.Bounds) && !reached1)
             {
                 horezontalPlatForm1.Left += HorezontalSpeed;
@@ -96,9 +116,29 @@ namespace HittingObject
             {
                 if (x is PictureBox)
                 {
+                    if ((string)x.Tag == "Borders")
+                    {
+                        if (Player.Bounds.IntersectsWith(x.Bounds) && (string)x.Name == "B1")
+                        {
+                            Player.Left = -2;
+                        }
+                        if (Player.Bounds.IntersectsWith(x.Bounds) && (string)x.Name == "B2")
+                        {
+                            Player.Left = 1331;
+                        }
+                    }
+                    if ((string)x.Tag == "Ladder")
+                    {
+                        Player.BringToFront();
+                        if (eKeyPressed && Player.Bounds.IntersectsWith(x.Bounds))
+                        {
+                            Player.Top = (int)x.Top + 10;
+
+                        }
+                    }
                     if ((string)x.Tag == "Perks")
                     {
-                        if (score % 5 == 0 && playerLevel != 0 && !apeared)
+                        if (score % 10 == 0 && playerLevel != 0 && !apeared)
                         {
                             gameTimer.Stop();
                             increaseHealth.Visible = true;
@@ -112,21 +152,21 @@ namespace HittingObject
                     }
                     if ((string)x.Tag == "Items")
                     {
-                        if(Player.Bounds.IntersectsWith(x.Bounds))
+                        if (Player.Bounds.IntersectsWith(x.Bounds))
                         {
                             x.Visible = false;
-                            if((string)x.Name == "superJumb")
+                            if ((string)x.Name == "superJumb")
                             {
-                                gotSuperJumb = true;
+
                             }
                         }
                     }
-                    if ((string)x.Tag == "PlateForm")
+                    if ((string)x.Tag == "ActionPlateForm" || (string)x.Name == "horezontalWall2" || (string)x.Name == "horezontalPlatForm1")
                     {
 
                         if (Player.Bounds.IntersectsWith(x.Bounds))
                         {
-                            if(!increasedJumb)
+                            if (!increasedJumb)
                             {
                                 force = 8;
                             }
@@ -134,7 +174,7 @@ namespace HittingObject
                             {
                                 force = 16;
                             }
-                                Player.Top = x.Top - Player.Height;
+                            Player.Top = x.Top - Player.Height;
                             if ((string)x.Name == "horezontalPlatForm1" && goingLeft == false || (string)x.Name == "horezontalPlatForm1" && goingRight == false)
                             {
                                 if (reached1 == false)
@@ -170,7 +210,7 @@ namespace HittingObject
                     {
                         if (Player.Bounds.IntersectsWith(x.Bounds))
                         {
-                            if(!increasedJumb)
+                            if (!increasedJumb)
                             {
                                 force -= 4;
                             }
@@ -198,7 +238,7 @@ namespace HittingObject
                             score++;
                             scoreNum.Text = score.ToString();
 
-                            if (score % 5 == 0)
+                            if (score % 10 == 0)
                             {
                                 playerLevel++;
                                 levelNum.Text = playerLevel.ToString();
@@ -216,31 +256,6 @@ namespace HittingObject
                     }
                 }
             }
-            if (playerHealth < 100)
-            {
-                if(!increasedHealth)
-                {
-                    playerHealth += playerHealingSpeed;
-                    playerHealthNum.Text = playerHealth.ToString();
-                    if (playerHealth == 100)
-                    {
-                        playerHealth = 100;
-                        playerHealthNum.Text = playerHealth.ToString();
-                    }
-                }
-                else
-                {
-                    int currentHealth = increasedHealthCounter * 10;
-                    playerHealth += playerHealingSpeed;
-                    playerHealthNum.Text = playerHealth.ToString();
-                    if (playerHealth == 100 + currentHealth)
-                    {
-                        playerHealth = 100 + currentHealth;
-                        playerHealthNum.Text = playerHealth.ToString();
-                    }
-                }
-                
-            }
         }
 
         private void DownPressed(object sender, KeyEventArgs e)
@@ -256,6 +271,10 @@ namespace HittingObject
             if (e.KeyCode == Keys.Space && isJumbing == false)
             {
                 isJumbing = true;
+            }
+            if (e.KeyCode == Keys.E)
+            {
+                eKeyPressed = true;
             }
         }
 
@@ -277,10 +296,24 @@ namespace HittingObject
             {
                 RestartGame();
             }
+            if (e.KeyCode == Keys.E)
+            {
+                eKeyPressed = false;
+            }
         }
 
         private void RestartGame()
         {
+            score = 0;
+            increaseHealth.Visible = false;
+            increaseHealth.Enabled = false;
+            increaseSpeed.Visible = false;
+            increaseSpeed.Enabled = false;
+            increaseStrength.Visible = false;
+            increaseStrength.Enabled = false;
+            armourPerk.Enabled = false;
+            armourPerk.Visible = false;
+
             playerHealth = 100;
             playerHealthNum.Text = playerHealth.ToString();
             levelNum.Text = "0";
@@ -291,21 +324,16 @@ namespace HittingObject
             isJumbing = false;
             isGameOver = false;
 
-            score = 0;
-            force = 0;
-
             foreach (Control x in this.Controls)
             {
-                if (x is PictureBox && x.Visible == false)
+                if (x is PictureBox && x.Visible == false && (string)x.Tag != "Perks")
                 {
                     x.Visible = true;
                 }
             }
 
-            Player.Left = 9;
-            Player.Top = 565;
-            horezontalPlatForm1.Left = 814;
-            horezontalPlatForm1.Top = 543;
+            Player.Left = 12;
+            Player.Top = 430;
 
             gameTimer.Start();
         }
@@ -321,11 +349,13 @@ namespace HittingObject
             increaseSpeed.Enabled = false;
             increaseStrength.Visible = false;
             increaseStrength.Enabled = false;
+            armourPerk.Enabled = false;
+            armourPerk.Visible = false;
             if (playerHealth < 100)
             {
                 playerHealth = 100;
             }
-            playerHealth += 10;
+            playerHealth = playerHealth + 10 * increasedHealthCounter - 10;
             playerHealthNum.Text = playerHealth.ToString();
             score++;
             apeared = false;
@@ -341,7 +371,48 @@ namespace HittingObject
             increaseSpeed.Enabled = false;
             increaseStrength.Visible = false;
             increaseStrength.Enabled = false;
+            armourPerk.Enabled = false;
+            armourPerk.Visible = false;
             playerSpeed += 1;
+            score++;
+            apeared = false;
+            gameTimer.Start();
+        }
+
+        private void increaseStrength_Click(object sender, EventArgs e)
+        {
+            increasedJumb = true;
+            increaseHealth.Visible = false;
+            increaseHealth.Enabled = false;
+            increaseSpeed.Visible = false;
+            increaseSpeed.Enabled = false;
+            increaseStrength.Visible = false;
+            increaseStrength.Enabled = false;
+            armourPerk.Enabled = false;
+            armourPerk.Visible = false;
+            jumbSpeed += 1;
+            score++;
+            apeared = false;
+            gameTimer.Start();
+        }
+
+        private void HealthIcon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox11_Click(object sender, EventArgs e)
+        {
+            increasedArmoured = true;
+            increaseHealth.Visible = false;
+            increaseHealth.Enabled = false;
+            increaseSpeed.Visible = false;
+            increaseSpeed.Enabled = false;
+            increaseStrength.Visible = false;
+            increaseStrength.Enabled = false;
+            armourPerk.Enabled = false;
+            armourPerk.Visible = false;
+            jumbSpeed += 1;
             score++;
             apeared = false;
             gameTimer.Start();

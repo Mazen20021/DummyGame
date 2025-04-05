@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\My Projects\\Games\\HittingObject\\HittingObject.csproj",
+      "projectUniqueName": "D:\\My Projects\\Games\\HittingObject\\DummyGame\\HittingObject.csproj",
       "projectName": "HittingObject",
-      "projectPath": "D:\\My Projects\\Games\\HittingObject\\HittingObject.csproj",
+      "projectPath": "D:\\My Projects\\Games\\HittingObject\\DummyGame\\HittingObject.csproj",
       "packagesPath": "C:\\Users\\mazen\\.nuget\\packages\\",
-      "outputPath": "D:\\My Projects\\Games\\HittingObject\\obj\\",
+      "outputPath": "D:\\My Projects\\Games\\HittingObject\\DummyGame\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
