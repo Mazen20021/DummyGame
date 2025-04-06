@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Reflection.Emit;
+using System.Resources;
 using System.Windows.Forms;
 
 namespace HittingObject
@@ -28,6 +29,7 @@ namespace HittingObject
         bool increasedJumb = false;
         bool eKeyPressed = false;
         bool increasedArmoured = false;
+        bool hasArmor = false;
 
         int increasedHealthCounter = 0;
         public Form1()
@@ -111,151 +113,209 @@ namespace HittingObject
             {
                 jumbSpeed = 10;
             }
-
-            foreach (Control x in this.Controls)
+            if(playerHealthNum.Text == "100" && !hasArmor)
             {
-                if (x is PictureBox)
+                HealthIcon.Visible = true;
+                precent80.Visible = false;
+                precent50.Visible = false;
+                precent10.Visible = false;
+                deadHealth.Visible = false;
+                Player.Image = Properties.Resources.player;
+
+            }
+            else if(int.Parse(playerHealthNum.Text) <100 && int.Parse(playerHealthNum.Text) >= 70)
+            {
+                HealthIcon.Visible = false;
+                precent80.Visible = true;
+                precent50.Visible = false;
+                precent10.Visible = false;
+                deadHealth.Visible = false;
+                Player.Image = Properties.Resources.hlaf_injured;
+            }
+            else if(int.Parse(playerHealthNum.Text) < 70 && int.Parse(playerHealthNum.Text) >= 40)
+            {
+                HealthIcon.Visible = false;
+                precent80.Visible = false;
+                precent50 .Visible = true;
+                precent10.Visible = false;
+                deadHealth.Visible = false;
+                Player.Image = Properties.Resources.fully_injured;
+            }
+            else if(int.Parse(playerHealthNum.Text) < 40 && int.Parse(playerHealthNum.Text) >= 1)
+            {
+                HealthIcon.Visible = false;
+                precent80.Visible = false;
+                precent50.Visible = false;
+                precent10.Visible = true;
+                deadHealth.Visible = false;
+                Player.Image = Properties.Resources.fully_injured;
+            }
+            else if(playerHealthNum.Text == "0")
+            {
+                HealthIcon.Visible = false;
+                precent80.Visible = false;
+                precent50.Visible = false;
+                precent10.Visible = false;
+                deadHealth.Visible = true;
+            }
+                foreach (Control x in this.Controls)
                 {
-                    if ((string)x.Tag == "Borders")
+                    if (x is PictureBox)
                     {
-                        if (Player.Bounds.IntersectsWith(x.Bounds) && (string)x.Name == "B1")
+                        if ((string)x.Tag == "Borders")
                         {
-                            Player.Left = -2;
-                        }
-                        if (Player.Bounds.IntersectsWith(x.Bounds) && (string)x.Name == "B2")
-                        {
-                            Player.Left = 1331;
-                        }
-                    }
-                    if ((string)x.Tag == "Ladder")
-                    {
-                        Player.BringToFront();
-                        if (eKeyPressed && Player.Bounds.IntersectsWith(x.Bounds))
-                        {
-                            Player.Top = (int)x.Top + 10;
-
-                        }
-                    }
-                    if ((string)x.Tag == "Perks")
-                    {
-                        if (score % 10 == 0 && playerLevel != 0 && !apeared)
-                        {
-                            gameTimer.Stop();
-                            increaseHealth.Visible = true;
-                            increaseHealth.Enabled = true;
-                            increaseSpeed.Visible = true;
-                            increaseSpeed.Enabled = true;
-                            increaseStrength.Visible = true;
-                            increaseStrength.Enabled = true;
-                            apeared = true;
-                        }
-                    }
-                    if ((string)x.Tag == "Items")
-                    {
-                        if (Player.Bounds.IntersectsWith(x.Bounds))
-                        {
-                            x.Visible = false;
-                            if ((string)x.Name == "superJumb")
+                            if (Player.Bounds.IntersectsWith(x.Bounds) && (string)x.Name == "B1")
                             {
+                                Player.Left = -2;
+                            }
+                            if (Player.Bounds.IntersectsWith(x.Bounds) && (string)x.Name == "B2")
+                            {
+                                Player.Left = 1331;
+                            }
+                        }
+                        if ((string)x.Tag == "Ladder")
+                        {
+                            Player.BringToFront();
+                            if (eKeyPressed && Player.Bounds.IntersectsWith(x.Bounds))
+                            {
+                                Player.Top = (int)x.Top + 10;
 
                             }
                         }
-                    }
-                    if ((string)x.Tag == "ActionPlateForm" || (string)x.Name == "horezontalWall2" || (string)x.Name == "horezontalPlatForm1")
-                    {
-
-                        if (Player.Bounds.IntersectsWith(x.Bounds))
+                        if ((string)x.Tag == "Perks")
                         {
-                            if (!increasedJumb)
+                            if (score % 10 == 0 && playerLevel != 0 && !apeared)
                             {
-                                force = 8;
+                                gameTimer.Stop();
+                                increaseHealth.Visible = true;
+                                increaseHealth.Enabled = true;
+                                increaseSpeed.Visible = true;
+                                increaseSpeed.Enabled = true;
+                                increaseStrength.Visible = true;
+                                increaseStrength.Enabled = true;
+                                apeared = true;
                             }
-                            else
+                        }
+                        if ((string)x.Tag == "Items")
+                        {
+                            if (Player.Bounds.IntersectsWith(x.Bounds) && x.Visible == true)
                             {
-                                force = 16;
-                            }
-                            Player.Top = x.Top - Player.Height;
-                            if ((string)x.Name == "horezontalPlatForm1" && goingLeft == false || (string)x.Name == "horezontalPlatForm1" && goingRight == false)
-                            {
-                                if (reached1 == false)
+                                x.Visible = false;
+                                if ((string)x.Name == "armorItem")
                                 {
-                                    Player.Left += HorezontalSpeed;
+                                    hasArmor = true;
+                                    armorHealth.Visible = true;
+                                    Player.Image = Properties.Resources.playerArmor;
+                            }
+                            }
+                        }
+                        if ((string)x.Tag == "ActionPlateForm" || (string)x.Name == "horezontalWall2" || (string)x.Name == "horezontalPlatForm1")
+                        {
+
+                            if (Player.Bounds.IntersectsWith(x.Bounds))
+                            {
+                                if (!increasedJumb)
+                                {
+                                    force = 8;
                                 }
                                 else
                                 {
-                                    Player.Left -= HorezontalSpeed;
+                                    force = 16;
+                                }
+                                Player.Top = x.Top - Player.Height;
+                                if ((string)x.Name == "horezontalPlatForm1" && goingLeft == false || (string)x.Name == "horezontalPlatForm1" && goingRight == false)
+                                {
+                                    if (reached1 == false)
+                                    {
+                                        Player.Left += HorezontalSpeed;
+                                    }
+                                    else
+                                    {
+                                        Player.Left -= HorezontalSpeed;
+                                    }
+
+                                }
+                                if ((string)x.Name == "horezontalWall2" && goingLeft == false || (string)x.Name == "horezontalWall2" && goingRight == false)
+                                {
+                                    if (reached2 == false)
+                                    {
+                                        Player.Left += HorezontalSpeed;
+                                    }
+                                    else
+                                    {
+                                        Player.Left -= HorezontalSpeed;
+                                    }
+
                                 }
 
                             }
-                            if ((string)x.Name == "horezontalWall2" && goingLeft == false || (string)x.Name == "horezontalWall2" && goingRight == false)
+
+
+                            x.BringToFront();
+                        }
+
+                        if ((string)x.Tag == "Lava")
+                        {
+                            if (Player.Bounds.IntersectsWith(x.Bounds))
                             {
-                                if (reached2 == false)
+                                if (hasArmor)
                                 {
-                                    Player.Left += HorezontalSpeed;
+                                    hasArmor = false;
+                                    armorHealth.Visible = false;
+                                Player.Image = Properties.Resources.player;
+                            }
+                                else
+                                {
+                                    playerHealth -= 10;
+                                    playerHealthNum.Text = playerHealth.ToString();
+                                }
+                                if (!increasedJumb)
+                                {
+                                    force -= 4;
                                 }
                                 else
                                 {
-                                    Player.Left -= HorezontalSpeed;
+                                    force -= 2;
                                 }
+                                Player.Top = x.Top - Player.Height;
 
+                                if (playerHealth <= 0)
+                                {
+                                    playerHealth = 0;
+                                    playerHealthNum.Text = playerHealth.ToString();
+                                    isGameOver = true;
+                                }
                             }
-
                         }
-
-
-                        x.BringToFront();
-                    }
-
-                    if ((string)x.Tag == "Lava")
-                    {
-                        if (Player.Bounds.IntersectsWith(x.Bounds))
+                        if ((string)x.Tag == "Coin")
                         {
-                            if (!increasedJumb)
+                            if (Player.Bounds.IntersectsWith(x.Bounds) && x.Visible == true)
                             {
-                                force -= 4;
-                            }
-                            else
-                            {
-                                force -= 2;
-                            }
-                            Player.Top = x.Top - Player.Height;
-                            playerHealth -= 10;
-                            playerHealthNum.Text = playerHealth.ToString();
-                            if (playerHealth <= 0)
-                            {
-                                playerHealth = 0;
-                                playerHealthNum.Text = playerHealth.ToString();
-                                isGameOver = true;
+                                x.Visible = false;
+
+                                score++;
+                                scoreNum.Text = score.ToString();
+
+                                if (score % 10 == 0)
+                                {
+                                    playerLevel++;
+                                    levelNum.Text = playerLevel.ToString();
+                                }
                             }
                         }
-                    }
-                    if ((string)x.Tag == "Coin")
-                    {
-                        if (Player.Bounds.IntersectsWith(x.Bounds) && x.Visible == true)
+
+                        if (isGameOver == true)
                         {
-                            x.Visible = false;
-
-                            score++;
-                            scoreNum.Text = score.ToString();
-
-                            if (score % 10 == 0)
-                            {
-                                playerLevel++;
-                                levelNum.Text = playerLevel.ToString();
-                            }
-                        }
-                    }
-
-                    if (isGameOver == true)
-                    {
+                        Player.Image = Properties.Resources.deadperson;
+                        
                         gameTimer.Stop();
-                        var result = MessageBox.Show("You are dead try again ?", "Game Over", MessageBoxButtons.OK);
-                        if (result == DialogResult.OK)
-                            RestartGame();
+                            var result = MessageBox.Show("You are dead try again ?", "Game Over", MessageBoxButtons.OK);
+                            if (result == DialogResult.OK)
+                                RestartGame();
 
+                        }
                     }
                 }
-            }
         }
 
         private void DownPressed(object sender, KeyEventArgs e)
@@ -311,8 +371,6 @@ namespace HittingObject
             increaseSpeed.Enabled = false;
             increaseStrength.Visible = false;
             increaseStrength.Enabled = false;
-            armourPerk.Enabled = false;
-            armourPerk.Visible = false;
 
             playerHealth = 100;
             playerHealthNum.Text = playerHealth.ToString();
@@ -349,8 +407,6 @@ namespace HittingObject
             increaseSpeed.Enabled = false;
             increaseStrength.Visible = false;
             increaseStrength.Enabled = false;
-            armourPerk.Enabled = false;
-            armourPerk.Visible = false;
             if (playerHealth < 100)
             {
                 playerHealth = 100;
@@ -371,8 +427,6 @@ namespace HittingObject
             increaseSpeed.Enabled = false;
             increaseStrength.Visible = false;
             increaseStrength.Enabled = false;
-            armourPerk.Enabled = false;
-            armourPerk.Visible = false;
             playerSpeed += 1;
             score++;
             apeared = false;
@@ -388,8 +442,6 @@ namespace HittingObject
             increaseSpeed.Enabled = false;
             increaseStrength.Visible = false;
             increaseStrength.Enabled = false;
-            armourPerk.Enabled = false;
-            armourPerk.Visible = false;
             jumbSpeed += 1;
             score++;
             apeared = false;
@@ -410,8 +462,6 @@ namespace HittingObject
             increaseSpeed.Enabled = false;
             increaseStrength.Visible = false;
             increaseStrength.Enabled = false;
-            armourPerk.Enabled = false;
-            armourPerk.Visible = false;
             jumbSpeed += 1;
             score++;
             apeared = false;

@@ -66,7 +66,7 @@
             increaseStrength = new PictureBox();
             increaseSpeed = new PictureBox();
             increaseHealth = new PictureBox();
-            superJumb = new PictureBox();
+            armorItem = new PictureBox();
             pictureBox1 = new PictureBox();
             B2 = new PictureBox();
             B1 = new PictureBox();
@@ -78,10 +78,14 @@
             pictureBox8 = new PictureBox();
             pictureBox9 = new PictureBox();
             pictureBox10 = new PictureBox();
-            armourPerk = new PictureBox();
             HealthIcon = new PictureBox();
             label4 = new Label();
             label5 = new Label();
+            armorHealth = new PictureBox();
+            precent80 = new PictureBox();
+            precent50 = new PictureBox();
+            precent10 = new PictureBox();
+            deadHealth = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)wall1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)wall2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -111,7 +115,7 @@
             ((System.ComponentModel.ISupportInitialize)increaseStrength).BeginInit();
             ((System.ComponentModel.ISupportInitialize)increaseSpeed).BeginInit();
             ((System.ComponentModel.ISupportInitialize)increaseHealth).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)superJumb).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)armorItem).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)B2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)B1).BeginInit();
@@ -123,8 +127,12 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)armourPerk).BeginInit();
             ((System.ComponentModel.ISupportInitialize)HealthIcon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)armorHealth).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)precent80).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)precent50).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)precent10).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)deadHealth).BeginInit();
             SuspendLayout();
             // 
             // wall1
@@ -462,7 +470,7 @@
             increaseStrength.BackColor = Color.Transparent;
             increaseStrength.Enabled = false;
             increaseStrength.Image = Properties.Resources.increaseStrength;
-            increaseStrength.Location = new Point(832, 47);
+            increaseStrength.Location = new Point(744, 63);
             increaseStrength.Name = "increaseStrength";
             increaseStrength.Size = new Size(125, 139);
             increaseStrength.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -478,7 +486,7 @@
             increaseSpeed.BackColor = Color.Transparent;
             increaseSpeed.Enabled = false;
             increaseSpeed.Image = (Image)resources.GetObject("increaseSpeed.Image");
-            increaseSpeed.Location = new Point(663, 47);
+            increaseSpeed.Location = new Point(575, 63);
             increaseSpeed.Name = "increaseSpeed";
             increaseSpeed.Size = new Size(125, 139);
             increaseSpeed.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -494,7 +502,7 @@
             increaseHealth.BackColor = Color.Transparent;
             increaseHealth.Enabled = false;
             increaseHealth.Image = Properties.Resources.increaseHealth;
-            increaseHealth.Location = new Point(492, 47);
+            increaseHealth.Location = new Point(404, 63);
             increaseHealth.Name = "increaseHealth";
             increaseHealth.Size = new Size(125, 139);
             increaseHealth.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -504,17 +512,17 @@
             increaseHealth.Visible = false;
             increaseHealth.Click += increaseHealth_Click;
             // 
-            // superJumb
+            // armorItem
             // 
-            superJumb.BackColor = Color.Transparent;
-            superJumb.Image = Properties.Resources.superJumb;
-            superJumb.Location = new Point(181, 437);
-            superJumb.Name = "superJumb";
-            superJumb.Size = new Size(26, 19);
-            superJumb.SizeMode = PictureBoxSizeMode.StretchImage;
-            superJumb.TabIndex = 35;
-            superJumb.TabStop = false;
-            superJumb.Tag = "Items";
+            armorItem.BackColor = Color.Transparent;
+            armorItem.Image = (Image)resources.GetObject("armorItem.Image");
+            armorItem.Location = new Point(173, 419);
+            armorItem.Name = "armorItem";
+            armorItem.Size = new Size(42, 43);
+            armorItem.SizeMode = PictureBoxSizeMode.StretchImage;
+            armorItem.TabIndex = 35;
+            armorItem.TabStop = false;
+            armorItem.Tag = "Items";
             // 
             // pictureBox1
             // 
@@ -631,22 +639,6 @@
             pictureBox10.TabStop = false;
             pictureBox10.Tag = "ActionPlateForm";
             // 
-            // armourPerk
-            // 
-            armourPerk.AccessibleName = "Perks";
-            armourPerk.BackColor = Color.Transparent;
-            armourPerk.Enabled = false;
-            armourPerk.Image = (Image)resources.GetObject("armourPerk.Image");
-            armourPerk.Location = new Point(327, 47);
-            armourPerk.Name = "armourPerk";
-            armourPerk.Size = new Size(125, 139);
-            armourPerk.SizeMode = PictureBoxSizeMode.StretchImage;
-            armourPerk.TabIndex = 47;
-            armourPerk.TabStop = false;
-            armourPerk.Tag = "Perks";
-            armourPerk.Visible = false;
-            armourPerk.Click += pictureBox11_Click;
-            // 
             // HealthIcon
             // 
             HealthIcon.BackColor = Color.Transparent;
@@ -678,6 +670,71 @@
             label5.TabIndex = 49;
             label5.Text = "Player Armor :";
             // 
+            // armorHealth
+            // 
+            armorHealth.BackColor = Color.Transparent;
+            armorHealth.Image = (Image)resources.GetObject("armorHealth.Image");
+            armorHealth.Location = new Point(1307, -2);
+            armorHealth.Name = "armorHealth";
+            armorHealth.Size = new Size(46, 52);
+            armorHealth.SizeMode = PictureBoxSizeMode.StretchImage;
+            armorHealth.TabIndex = 51;
+            armorHealth.TabStop = false;
+            armorHealth.Tag = "";
+            armorHealth.Visible = false;
+            // 
+            // precent80
+            // 
+            precent80.BackColor = Color.Transparent;
+            precent80.Image = (Image)resources.GetObject("precent80.Image");
+            precent80.Location = new Point(1307, -2);
+            precent80.Name = "precent80";
+            precent80.Size = new Size(46, 52);
+            precent80.SizeMode = PictureBoxSizeMode.StretchImage;
+            precent80.TabIndex = 52;
+            precent80.TabStop = false;
+            precent80.Tag = "";
+            precent80.Visible = false;
+            // 
+            // precent50
+            // 
+            precent50.BackColor = Color.Transparent;
+            precent50.Image = (Image)resources.GetObject("precent50.Image");
+            precent50.Location = new Point(1307, -2);
+            precent50.Name = "precent50";
+            precent50.Size = new Size(46, 52);
+            precent50.SizeMode = PictureBoxSizeMode.StretchImage;
+            precent50.TabIndex = 53;
+            precent50.TabStop = false;
+            precent50.Tag = "";
+            precent50.Visible = false;
+            // 
+            // precent10
+            // 
+            precent10.BackColor = Color.Transparent;
+            precent10.Image = (Image)resources.GetObject("precent10.Image");
+            precent10.Location = new Point(1307, -2);
+            precent10.Name = "precent10";
+            precent10.Size = new Size(46, 52);
+            precent10.SizeMode = PictureBoxSizeMode.StretchImage;
+            precent10.TabIndex = 54;
+            precent10.TabStop = false;
+            precent10.Tag = "";
+            precent10.Visible = false;
+            // 
+            // deadHealth
+            // 
+            deadHealth.BackColor = Color.Transparent;
+            deadHealth.Image = (Image)resources.GetObject("deadHealth.Image");
+            deadHealth.Location = new Point(1307, -4);
+            deadHealth.Name = "deadHealth";
+            deadHealth.Size = new Size(46, 52);
+            deadHealth.SizeMode = PictureBoxSizeMode.StretchImage;
+            deadHealth.TabIndex = 55;
+            deadHealth.TabStop = false;
+            deadHealth.Tag = "";
+            deadHealth.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -685,10 +742,14 @@
             BackColor = SystemColors.ButtonHighlight;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(1357, 681);
+            Controls.Add(deadHealth);
+            Controls.Add(precent10);
+            Controls.Add(precent50);
+            Controls.Add(precent80);
+            Controls.Add(armorHealth);
             Controls.Add(label4);
             Controls.Add(label5);
             Controls.Add(HealthIcon);
-            Controls.Add(armourPerk);
             Controls.Add(pictureBox10);
             Controls.Add(pictureBox9);
             Controls.Add(pictureBox8);
@@ -699,7 +760,7 @@
             Controls.Add(pictureBox3);
             Controls.Add(B1);
             Controls.Add(B2);
-            Controls.Add(superJumb);
+            Controls.Add(armorItem);
             Controls.Add(increaseStrength);
             Controls.Add(increaseSpeed);
             Controls.Add(increaseHealth);
@@ -771,7 +832,7 @@
             ((System.ComponentModel.ISupportInitialize)increaseStrength).EndInit();
             ((System.ComponentModel.ISupportInitialize)increaseSpeed).EndInit();
             ((System.ComponentModel.ISupportInitialize)increaseHealth).EndInit();
-            ((System.ComponentModel.ISupportInitialize)superJumb).EndInit();
+            ((System.ComponentModel.ISupportInitialize)armorItem).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)B2).EndInit();
             ((System.ComponentModel.ISupportInitialize)B1).EndInit();
@@ -783,8 +844,12 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
-            ((System.ComponentModel.ISupportInitialize)armourPerk).EndInit();
             ((System.ComponentModel.ISupportInitialize)HealthIcon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)armorHealth).EndInit();
+            ((System.ComponentModel.ISupportInitialize)precent80).EndInit();
+            ((System.ComponentModel.ISupportInitialize)precent50).EndInit();
+            ((System.ComponentModel.ISupportInitialize)precent10).EndInit();
+            ((System.ComponentModel.ISupportInitialize)deadHealth).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -827,7 +892,7 @@
         private PictureBox increaseStrength;
         private PictureBox increaseSpeed;
         private PictureBox increaseHealth;
-        private PictureBox superJumb;
+        private PictureBox armorItem;
         private PictureBox pictureBox1;
         private PictureBox B2;
         private PictureBox B1;
@@ -839,9 +904,13 @@
         private PictureBox pictureBox8;
         private PictureBox pictureBox9;
         private PictureBox pictureBox10;
-        private PictureBox armourPerk;
         private PictureBox HealthIcon;
         private Label label4;
         private Label label5;
+        private PictureBox armorHealth;
+        private PictureBox precent80;
+        private PictureBox precent50;
+        private PictureBox precent10;
+        private PictureBox deadHealth;
     }
 }
