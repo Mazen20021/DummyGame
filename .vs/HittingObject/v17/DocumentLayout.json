@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\My Projects\\Games\\HittingObject\\DummyGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2876280-B3FD-4E99-ACE7-7E88F76303DD}|HittingObject.csproj|d:\\my projects\\games\\hittingobject\\dummygame\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2876280-B3FD-4E99-ACE7-7E88F76303DD}|HittingObject.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2876280-B3FD-4E99-ACE7-7E88F76303DD}|HittingObject.csproj|D:\\My Projects\\Games\\HittingObject\\DummyGame\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A2876280-B3FD-4E99-ACE7-7E88F76303DD}|HittingObject.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2876280-B3FD-4E99-ACE7-7E88F76303DD}|HittingObject.csproj|d:\\my projects\\games\\hittingobject\\dummygame\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A2876280-B3FD-4E99-ACE7-7E88F76303DD}|HittingObject.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A2876280-B3FD-4E99-ACE7-7E88F76303DD}|HittingObject.csproj|d:\\my projects\\games\\hittingobject\\dummygame\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2876280-B3FD-4E99-ACE7-7E88F76303DD}|HittingObject.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,17 +18,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\My Projects\\Games\\HittingObject\\DummyGame\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "D:\\My Projects\\Games\\HittingObject\\DummyGame\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAB0BAAAAAAAAAAAAADABAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAK8AAAAAAAAAAAAiwMIAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-04T18:01:03.32Z",
               "IsPinned": true,
@@ -44,7 +44,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "D:\\My Projects\\Games\\HittingObject\\DummyGame\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",

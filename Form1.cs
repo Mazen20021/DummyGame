@@ -22,14 +22,17 @@ namespace HittingObject
         bool intialMovement = false;
         bool reached1 = false;
         bool reached2 = false;
+        bool reached3 = false;
         bool apeared = false;
         bool gotSuperJumb = false;
         bool increasedHealth = false;
         bool increasedSpeed = false;
         bool increasedJumb = false;
         bool eKeyPressed = false;
-        bool increasedArmoured = false;
         bool hasArmor = false;
+        bool isDoorKeyPicked = false;
+        bool isKeyCardPicked = false;
+        bool isElevatorMoving = false;
 
         int increasedHealthCounter = 0;
         public Form1()
@@ -52,10 +55,6 @@ namespace HittingObject
 
             Player.Top += jumbSpeed;
 
-            if(increasedArmoured)
-            {
-
-            }
             if (!horezontalPlatForm1.Bounds.IntersectsWith(wall6.Bounds) && !reached1)
             {
                 horezontalPlatForm1.Left += HorezontalSpeed;
@@ -73,6 +72,25 @@ namespace HittingObject
                     reached1 = false;
                 }
             }
+            if (!elevator.Bounds.IntersectsWith(wall101.Bounds) && !reached3 && isKeyCardPicked)
+            {
+                ElevatorPannel.Visible = false;
+                elevator.BackColor = Color.Green;
+
+                elevator.Left -= HorezontalSpeed;
+                if(elevator.Bounds.IntersectsWith(wall101.Bounds))
+                {
+                    reached3 = true;
+                }
+            }else if(!elevator.Bounds.IntersectsWith(wall8.Bounds) && reached3 && isKeyCardPicked)
+            {
+                elevator.Left += HorezontalSpeed;
+                if (elevator.Bounds.IntersectsWith(wall8.Bounds))
+                {
+                    reached3 = false;
+                }
+            }
+
             if (!horezontalWall2.Bounds.IntersectsWith(wall2.Bounds) && !reached2)
             {
                 horezontalWall2.Left += HorezontalSpeed;
@@ -115,11 +133,13 @@ namespace HittingObject
             }
             if(playerHealthNum.Text == "100" && !hasArmor)
             {
+                healthPar.Value = 100;
                 HealthIcon.Visible = true;
                 precent80.Visible = false;
                 precent50.Visible = false;
                 precent10.Visible = false;
                 deadHealth.Visible = false;
+                playerPanel.Image = Properties.Resources.player;
                 Player.Image = Properties.Resources.player;
 
             }
@@ -131,6 +151,8 @@ namespace HittingObject
                 precent10.Visible = false;
                 deadHealth.Visible = false;
                 Player.Image = Properties.Resources.hlaf_injured;
+                playerPanel.Image = Properties.Resources.hlaf_injured;
+                healthPar.Value = 70;
             }
             else if(int.Parse(playerHealthNum.Text) < 70 && int.Parse(playerHealthNum.Text) >= 40)
             {
@@ -140,6 +162,8 @@ namespace HittingObject
                 precent10.Visible = false;
                 deadHealth.Visible = false;
                 Player.Image = Properties.Resources.fully_injured;
+                playerPanel.Image = Properties.Resources.fully_injured;
+                healthPar.Value = 40;
             }
             else if(int.Parse(playerHealthNum.Text) < 40 && int.Parse(playerHealthNum.Text) >= 1)
             {
@@ -149,6 +173,8 @@ namespace HittingObject
                 precent10.Visible = true;
                 deadHealth.Visible = false;
                 Player.Image = Properties.Resources.fully_injured;
+                playerPanel.Image = Properties.Resources.fully_injured;
+                healthPar.Value = 20;
             }
             else if(playerHealthNum.Text == "0")
             {
@@ -157,12 +183,16 @@ namespace HittingObject
                 precent50.Visible = false;
                 precent10.Visible = false;
                 deadHealth.Visible = true;
+                
+                healthPar.Value = 0;
             }
                 foreach (Control x in this.Controls)
                 {
                     if (x is PictureBox)
                     {
-                        if ((string)x.Tag == "Borders")
+                        
+                    
+                    if ((string)x.Tag == "Borders")
                         {
                             if (Player.Bounds.IntersectsWith(x.Bounds) && (string)x.Name == "B1")
                             {
@@ -206,10 +236,12 @@ namespace HittingObject
                                     hasArmor = true;
                                     armorHealth.Visible = true;
                                     Player.Image = Properties.Resources.playerArmor;
+                                playerPanel.Image = Properties.Resources.playerArmor;
+                                    armorPar.Value = 100;
                             }
                             }
                         }
-                        if ((string)x.Tag == "ActionPlateForm" || (string)x.Name == "horezontalWall2" || (string)x.Name == "horezontalPlatForm1")
+                        if ((string)x.Tag == "ActionPlateForm" || (string)x.Name == "horezontalWall2" || (string)x.Name == "horezontalPlatForm1" || (string)x.Name == "elevator")
                         {
 
                             if (Player.Bounds.IntersectsWith(x.Bounds))
@@ -247,14 +279,40 @@ namespace HittingObject
                                     }
 
                                 }
+                            if ((string)x.Name == "elevator" && goingLeft == false || (string)x.Name == "elevator" && goingRight == false)
+                            {
+                                if (reached3 == false)
+                                {
+                                    Player.Left += HorezontalSpeed;
+                                }
+                                else
+                                {
+                                    Player.Left -= HorezontalSpeed;
+                                }
 
                             }
+
+                        }
 
 
                             x.BringToFront();
                         }
-
-                        if ((string)x.Tag == "Lava")
+                    if ((string)x.Tag == "KeyDoors")
+                    {
+                        if ((string)x.Name == "DoorKey" && !isDoorKeyPicked && Player.Bounds.IntersectsWith(x.Bounds) && DoorKey.Visible == true)
+                        {
+                            DoorKey.Visible = false;
+                            CollectedDoorKey.Visible = true;
+                            isDoorKeyPicked = true;
+                        }
+                        if ((string)x.Name == "keyCard" && !isKeyCardPicked && Player.Bounds.IntersectsWith(x.Bounds) && keyCard.Visible == true)
+                        {
+                            keyCard.Visible = false;
+                            CollectedKeyCard.Visible = true;
+                            isKeyCardPicked = true;
+                        }
+                    }
+                    if ((string)x.Tag == "Lava")
                         {
                             if (Player.Bounds.IntersectsWith(x.Bounds))
                             {
@@ -262,8 +320,9 @@ namespace HittingObject
                                 {
                                     hasArmor = false;
                                     armorHealth.Visible = false;
-                                Player.Image = Properties.Resources.player;
-                            }
+                                    armorPar.Value = 0;
+                                    Player.Image = Properties.Resources.player;
+                                 }
                                 else
                                 {
                                     playerHealth -= 10;
@@ -307,7 +366,7 @@ namespace HittingObject
                         if (isGameOver == true)
                         {
                         Player.Image = Properties.Resources.deadperson;
-                        
+                        playerPanel.Image = Properties.Resources.deadperson;
                         gameTimer.Stop();
                             var result = MessageBox.Show("You are dead try again ?", "Game Over", MessageBoxButtons.OK);
                             if (result == DialogResult.OK)
@@ -365,6 +424,16 @@ namespace HittingObject
         private void RestartGame()
         {
             score = 0;
+            elevator.Left = 939;
+            elevator.Tag = 114;
+            ElevatorPannel.Visible = true;
+            elevator.BackColor = Color.IndianRed;
+            isKeyCardPicked = false;
+            isDoorKeyPicked = false;
+            CollectedDoorKey.Visible = false;
+            CollectedKeyCard.Visible = false;
+            keyCard.Visible = true;
+            DoorKey.Visible = true;
             increaseHealth.Visible = false;
             increaseHealth.Enabled = false;
             increaseSpeed.Visible = false;
@@ -453,19 +522,5 @@ namespace HittingObject
 
         }
 
-        private void pictureBox11_Click(object sender, EventArgs e)
-        {
-            increasedArmoured = true;
-            increaseHealth.Visible = false;
-            increaseHealth.Enabled = false;
-            increaseSpeed.Visible = false;
-            increaseSpeed.Enabled = false;
-            increaseStrength.Visible = false;
-            increaseStrength.Enabled = false;
-            jumbSpeed += 1;
-            score++;
-            apeared = false;
-            gameTimer.Start();
-        }
     }
 }

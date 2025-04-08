@@ -42,9 +42,7 @@
             wall8 = new PictureBox();
             Player = new PictureBox();
             gameTimer = new System.Windows.Forms.Timer(components);
-            label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
             scoreNum = new Label();
             levelNum = new Label();
             playerHealthNum = new Label();
@@ -79,13 +77,35 @@
             pictureBox9 = new PictureBox();
             pictureBox10 = new PictureBox();
             HealthIcon = new PictureBox();
-            label4 = new Label();
-            label5 = new Label();
             armorHealth = new PictureBox();
             precent80 = new PictureBox();
             precent50 = new PictureBox();
             precent10 = new PictureBox();
             deadHealth = new PictureBox();
+            elevator = new PictureBox();
+            wall101 = new PictureBox();
+            pictureBox14 = new PictureBox();
+            pictureBox15 = new PictureBox();
+            DoorKey = new PictureBox();
+            ElevatorPannel = new PictureBox();
+            keyCard = new PictureBox();
+            panel1 = new Panel();
+            label9 = new Label();
+            StregthPerkText = new Label();
+            SpeedPerkText = new Label();
+            HealthPerkText = new Label();
+            pictureBox20 = new PictureBox();
+            pictureBox19 = new PictureBox();
+            pictureBox18 = new PictureBox();
+            label5 = new Label();
+            label4 = new Label();
+            CollectedDoorKey = new PictureBox();
+            CollectedKeyCard = new PictureBox();
+            label3 = new Label();
+            label1 = new Label();
+            armorPar = new ProgressBar();
+            healthPar = new ProgressBar();
+            playerPanel = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)wall1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)wall2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -133,6 +153,20 @@
             ((System.ComponentModel.ISupportInitialize)precent50).BeginInit();
             ((System.ComponentModel.ISupportInitialize)precent10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)deadHealth).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)elevator).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)wall101).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DoorKey).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ElevatorPannel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)keyCard).BeginInit();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox20).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CollectedDoorKey).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CollectedKeyCard).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)playerPanel).BeginInit();
             SuspendLayout();
             // 
             // wall1
@@ -260,46 +294,29 @@
             gameTimer.Interval = 25;
             gameTimer.Tick += MainGameEvent;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(42, 15);
-            label1.TabIndex = 11;
-            label1.Text = "Score :";
-            // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(275, 9);
+            label2.Location = new Point(12, 9);
             label2.Name = "label2";
             label2.Size = new Size(75, 15);
             label2.TabIndex = 12;
             label2.Text = "Player Level :";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(92, 18);
-            label3.Name = "label3";
-            label3.Size = new Size(83, 15);
-            label3.TabIndex = 13;
-            label3.Text = "Player Health :";
-            // 
             // scoreNum
             // 
             scoreNum.AutoSize = true;
-            scoreNum.Location = new Point(60, 9);
+            scoreNum.Font = new Font("Showcard Gothic", 12F);
+            scoreNum.Location = new Point(538, 115);
             scoreNum.Name = "scoreNum";
-            scoreNum.Size = new Size(13, 15);
+            scoreNum.Size = new Size(18, 20);
             scoreNum.TabIndex = 14;
             scoreNum.Text = "0";
             // 
             // levelNum
             // 
             levelNum.AutoSize = true;
-            levelNum.Location = new Point(356, 9);
+            levelNum.Location = new Point(93, 9);
             levelNum.Name = "levelNum";
             levelNum.Size = new Size(13, 15);
             levelNum.TabIndex = 15;
@@ -308,11 +325,12 @@
             // playerHealthNum
             // 
             playerHealthNum.AutoSize = true;
-            playerHealthNum.Location = new Point(175, 20);
+            playerHealthNum.Location = new Point(172, 113);
             playerHealthNum.Name = "playerHealthNum";
             playerHealthNum.Size = new Size(25, 15);
             playerHealthNum.TabIndex = 16;
             playerHealthNum.Text = "100";
+            playerHealthNum.Visible = false;
             // 
             // s6
             // 
@@ -470,9 +488,9 @@
             increaseStrength.BackColor = Color.Transparent;
             increaseStrength.Enabled = false;
             increaseStrength.Image = Properties.Resources.increaseStrength;
-            increaseStrength.Location = new Point(744, 63);
+            increaseStrength.Location = new Point(689, 257);
             increaseStrength.Name = "increaseStrength";
-            increaseStrength.Size = new Size(125, 139);
+            increaseStrength.Size = new Size(31, 33);
             increaseStrength.SizeMode = PictureBoxSizeMode.StretchImage;
             increaseStrength.TabIndex = 34;
             increaseStrength.TabStop = false;
@@ -486,9 +504,9 @@
             increaseSpeed.BackColor = Color.Transparent;
             increaseSpeed.Enabled = false;
             increaseSpeed.Image = (Image)resources.GetObject("increaseSpeed.Image");
-            increaseSpeed.Location = new Point(575, 63);
+            increaseSpeed.Location = new Point(652, 226);
             increaseSpeed.Name = "increaseSpeed";
-            increaseSpeed.Size = new Size(125, 139);
+            increaseSpeed.Size = new Size(31, 33);
             increaseSpeed.SizeMode = PictureBoxSizeMode.StretchImage;
             increaseSpeed.TabIndex = 33;
             increaseSpeed.TabStop = false;
@@ -502,9 +520,9 @@
             increaseHealth.BackColor = Color.Transparent;
             increaseHealth.Enabled = false;
             increaseHealth.Image = Properties.Resources.increaseHealth;
-            increaseHealth.Location = new Point(404, 63);
+            increaseHealth.Location = new Point(615, 257);
             increaseHealth.Name = "increaseHealth";
-            increaseHealth.Size = new Size(125, 139);
+            increaseHealth.Size = new Size(31, 33);
             increaseHealth.SizeMode = PictureBoxSizeMode.StretchImage;
             increaseHealth.TabIndex = 32;
             increaseHealth.TabStop = false;
@@ -643,40 +661,22 @@
             // 
             HealthIcon.BackColor = Color.Transparent;
             HealthIcon.Image = Properties.Resources.Health;
-            HealthIcon.Location = new Point(1307, -2);
+            HealthIcon.Location = new Point(329, 0);
             HealthIcon.Name = "HealthIcon";
-            HealthIcon.Size = new Size(46, 52);
+            HealthIcon.Size = new Size(131, 142);
             HealthIcon.SizeMode = PictureBoxSizeMode.StretchImage;
             HealthIcon.TabIndex = 48;
             HealthIcon.TabStop = false;
             HealthIcon.Tag = "";
             HealthIcon.Click += HealthIcon_Click;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(175, 35);
-            label4.Name = "label4";
-            label4.Size = new Size(25, 15);
-            label4.TabIndex = 50;
-            label4.Text = "100";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(92, 33);
-            label5.Name = "label5";
-            label5.Size = new Size(82, 15);
-            label5.TabIndex = 49;
-            label5.Text = "Player Armor :";
-            // 
             // armorHealth
             // 
             armorHealth.BackColor = Color.Transparent;
             armorHealth.Image = (Image)resources.GetObject("armorHealth.Image");
-            armorHealth.Location = new Point(1307, -2);
+            armorHealth.Location = new Point(329, 0);
             armorHealth.Name = "armorHealth";
-            armorHealth.Size = new Size(46, 52);
+            armorHealth.Size = new Size(131, 142);
             armorHealth.SizeMode = PictureBoxSizeMode.StretchImage;
             armorHealth.TabIndex = 51;
             armorHealth.TabStop = false;
@@ -687,9 +687,9 @@
             // 
             precent80.BackColor = Color.Transparent;
             precent80.Image = (Image)resources.GetObject("precent80.Image");
-            precent80.Location = new Point(1307, -2);
+            precent80.Location = new Point(329, 0);
             precent80.Name = "precent80";
-            precent80.Size = new Size(46, 52);
+            precent80.Size = new Size(131, 142);
             precent80.SizeMode = PictureBoxSizeMode.StretchImage;
             precent80.TabIndex = 52;
             precent80.TabStop = false;
@@ -700,9 +700,9 @@
             // 
             precent50.BackColor = Color.Transparent;
             precent50.Image = (Image)resources.GetObject("precent50.Image");
-            precent50.Location = new Point(1307, -2);
+            precent50.Location = new Point(329, 0);
             precent50.Name = "precent50";
-            precent50.Size = new Size(46, 52);
+            precent50.Size = new Size(131, 142);
             precent50.SizeMode = PictureBoxSizeMode.StretchImage;
             precent50.TabIndex = 53;
             precent50.TabStop = false;
@@ -713,9 +713,9 @@
             // 
             precent10.BackColor = Color.Transparent;
             precent10.Image = (Image)resources.GetObject("precent10.Image");
-            precent10.Location = new Point(1307, -2);
+            precent10.Location = new Point(329, 0);
             precent10.Name = "precent10";
-            precent10.Size = new Size(46, 52);
+            precent10.Size = new Size(131, 142);
             precent10.SizeMode = PictureBoxSizeMode.StretchImage;
             precent10.TabIndex = 54;
             precent10.TabStop = false;
@@ -726,30 +726,327 @@
             // 
             deadHealth.BackColor = Color.Transparent;
             deadHealth.Image = (Image)resources.GetObject("deadHealth.Image");
-            deadHealth.Location = new Point(1307, -4);
+            deadHealth.Location = new Point(329, 0);
             deadHealth.Name = "deadHealth";
-            deadHealth.Size = new Size(46, 52);
+            deadHealth.Size = new Size(131, 142);
             deadHealth.SizeMode = PictureBoxSizeMode.StretchImage;
             deadHealth.TabIndex = 55;
             deadHealth.TabStop = false;
             deadHealth.Tag = "";
             deadHealth.Visible = false;
             // 
+            // elevator
+            // 
+            elevator.BackColor = Color.IndianRed;
+            elevator.Location = new Point(940, 114);
+            elevator.Name = "elevator";
+            elevator.Size = new Size(92, 34);
+            elevator.TabIndex = 57;
+            elevator.TabStop = false;
+            elevator.Tag = "ActionPlateForm";
+            // 
+            // wall101
+            // 
+            wall101.BackColor = SystemColors.ActiveBorder;
+            wall101.Location = new Point(1, 114);
+            wall101.Name = "wall101";
+            wall101.Size = new Size(423, 20);
+            wall101.TabIndex = 59;
+            wall101.TabStop = false;
+            wall101.Tag = "ActionPlateForm";
+            // 
+            // pictureBox14
+            // 
+            pictureBox14.AccessibleName = "PlateForm";
+            pictureBox14.BackColor = SystemColors.ActiveBorder;
+            pictureBox14.Location = new Point(1, 114);
+            pictureBox14.Name = "pictureBox14";
+            pictureBox14.Size = new Size(423, 38);
+            pictureBox14.TabIndex = 58;
+            pictureBox14.TabStop = false;
+            pictureBox14.Tag = "PlateForm";
+            // 
+            // pictureBox15
+            // 
+            pictureBox15.AccessibleName = "Door";
+            pictureBox15.BackColor = Color.Transparent;
+            pictureBox15.Enabled = false;
+            pictureBox15.Image = (Image)resources.GetObject("pictureBox15.Image");
+            pictureBox15.Location = new Point(34, 40);
+            pictureBox15.Name = "pictureBox15";
+            pictureBox15.Size = new Size(72, 77);
+            pictureBox15.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox15.TabIndex = 60;
+            pictureBox15.TabStop = false;
+            pictureBox15.Tag = "Door";
+            // 
+            // DoorKey
+            // 
+            DoorKey.AccessibleName = "Perks";
+            DoorKey.BackColor = Color.Transparent;
+            DoorKey.Enabled = false;
+            DoorKey.Image = (Image)resources.GetObject("DoorKey.Image");
+            DoorKey.Location = new Point(744, 30);
+            DoorKey.Name = "DoorKey";
+            DoorKey.Size = new Size(31, 33);
+            DoorKey.SizeMode = PictureBoxSizeMode.StretchImage;
+            DoorKey.TabIndex = 61;
+            DoorKey.TabStop = false;
+            DoorKey.Tag = "KeyDoors";
+            // 
+            // ElevatorPannel
+            // 
+            ElevatorPannel.BackColor = Color.Red;
+            ElevatorPannel.Location = new Point(967, 77);
+            ElevatorPannel.Name = "ElevatorPannel";
+            ElevatorPannel.Size = new Size(36, 53);
+            ElevatorPannel.TabIndex = 62;
+            ElevatorPannel.TabStop = false;
+            ElevatorPannel.Tag = "ElevatorKey";
+            // 
+            // keyCard
+            // 
+            keyCard.AccessibleName = "Perks";
+            keyCard.BackColor = Color.Transparent;
+            keyCard.Enabled = false;
+            keyCard.Image = (Image)resources.GetObject("keyCard.Image");
+            keyCard.Location = new Point(547, 343);
+            keyCard.Name = "keyCard";
+            keyCard.Size = new Size(31, 33);
+            keyCard.SizeMode = PictureBoxSizeMode.StretchImage;
+            keyCard.TabIndex = 63;
+            keyCard.TabStop = false;
+            keyCard.Tag = "KeyDoors";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.AntiqueWhite;
+            panel1.Controls.Add(label9);
+            panel1.Controls.Add(StregthPerkText);
+            panel1.Controls.Add(SpeedPerkText);
+            panel1.Controls.Add(HealthPerkText);
+            panel1.Controls.Add(pictureBox20);
+            panel1.Controls.Add(pictureBox19);
+            panel1.Controls.Add(pictureBox18);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(CollectedDoorKey);
+            panel1.Controls.Add(CollectedKeyCard);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(armorPar);
+            panel1.Controls.Add(healthPar);
+            panel1.Controls.Add(playerPanel);
+            panel1.Controls.Add(armorHealth);
+            panel1.Controls.Add(HealthIcon);
+            panel1.Controls.Add(precent80);
+            panel1.Controls.Add(precent50);
+            panel1.Controls.Add(precent10);
+            panel1.Controls.Add(deadHealth);
+            panel1.Controls.Add(scoreNum);
+            panel1.Controls.Add(playerHealthNum);
+            panel1.Location = new Point(1, 544);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1356, 145);
+            panel1.TabIndex = 64;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Snap ITC", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(509, 91);
+            label9.Name = "label9";
+            label9.Size = new Size(74, 25);
+            label9.TabIndex = 73;
+            label9.Text = "Score";
+            // 
+            // StregthPerkText
+            // 
+            StregthPerkText.AutoSize = true;
+            StregthPerkText.Font = new Font("Showcard Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            StregthPerkText.Location = new Point(610, 70);
+            StregthPerkText.Name = "StregthPerkText";
+            StregthPerkText.Size = new Size(18, 20);
+            StregthPerkText.TabIndex = 72;
+            StregthPerkText.Text = "0";
+            // 
+            // SpeedPerkText
+            // 
+            SpeedPerkText.AutoSize = true;
+            SpeedPerkText.Font = new Font("Showcard Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            SpeedPerkText.Location = new Point(537, 70);
+            SpeedPerkText.Name = "SpeedPerkText";
+            SpeedPerkText.Size = new Size(18, 20);
+            SpeedPerkText.TabIndex = 71;
+            SpeedPerkText.Text = "0";
+            // 
+            // HealthPerkText
+            // 
+            HealthPerkText.AutoSize = true;
+            HealthPerkText.Font = new Font("Showcard Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            HealthPerkText.Location = new Point(472, 70);
+            HealthPerkText.Name = "HealthPerkText";
+            HealthPerkText.Size = new Size(18, 20);
+            HealthPerkText.TabIndex = 65;
+            HealthPerkText.Text = "0";
+            // 
+            // pictureBox20
+            // 
+            pictureBox20.AccessibleName = "Perks";
+            pictureBox20.BackColor = Color.Transparent;
+            pictureBox20.Enabled = false;
+            pictureBox20.Image = Properties.Resources.increaseStrength;
+            pictureBox20.Location = new Point(603, 31);
+            pictureBox20.Name = "pictureBox20";
+            pictureBox20.Size = new Size(31, 33);
+            pictureBox20.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox20.TabIndex = 65;
+            pictureBox20.TabStop = false;
+            pictureBox20.Tag = "Perks";
+            // 
+            // pictureBox19
+            // 
+            pictureBox19.AccessibleName = "Perks";
+            pictureBox19.BackColor = Color.Transparent;
+            pictureBox19.Enabled = false;
+            pictureBox19.Image = (Image)resources.GetObject("pictureBox19.Image");
+            pictureBox19.Location = new Point(530, 31);
+            pictureBox19.Name = "pictureBox19";
+            pictureBox19.Size = new Size(31, 33);
+            pictureBox19.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox19.TabIndex = 65;
+            pictureBox19.TabStop = false;
+            pictureBox19.Tag = "Perks";
+            // 
+            // pictureBox18
+            // 
+            pictureBox18.AccessibleName = "Perks";
+            pictureBox18.BackColor = Color.Transparent;
+            pictureBox18.Enabled = false;
+            pictureBox18.Image = Properties.Resources.increaseHealth;
+            pictureBox18.Location = new Point(466, 31);
+            pictureBox18.Name = "pictureBox18";
+            pictureBox18.Size = new Size(31, 33);
+            pictureBox18.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox18.TabIndex = 65;
+            pictureBox18.TabStop = false;
+            pictureBox18.Tag = "Perks";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Snap ITC", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(512, 1);
+            label5.Name = "label5";
+            label5.Size = new Size(76, 25);
+            label5.TabIndex = 70;
+            label5.Text = "Perks";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Snap ITC", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(1095, 15);
+            label4.Name = "label4";
+            label4.Size = new Size(184, 25);
+            label4.TabIndex = 69;
+            label4.Text = "Collected Items";
+            // 
+            // CollectedDoorKey
+            // 
+            CollectedDoorKey.AccessibleName = "Perks";
+            CollectedDoorKey.BackColor = Color.Transparent;
+            CollectedDoorKey.Enabled = false;
+            CollectedDoorKey.Image = (Image)resources.GetObject("CollectedDoorKey.Image");
+            CollectedDoorKey.Location = new Point(1240, 43);
+            CollectedDoorKey.Name = "CollectedDoorKey";
+            CollectedDoorKey.Size = new Size(31, 33);
+            CollectedDoorKey.SizeMode = PictureBoxSizeMode.StretchImage;
+            CollectedDoorKey.TabIndex = 65;
+            CollectedDoorKey.TabStop = false;
+            CollectedDoorKey.Tag = "Key";
+            CollectedDoorKey.Visible = false;
+            // 
+            // CollectedKeyCard
+            // 
+            CollectedKeyCard.AccessibleName = "Perks";
+            CollectedKeyCard.BackColor = Color.Transparent;
+            CollectedKeyCard.Enabled = false;
+            CollectedKeyCard.Image = (Image)resources.GetObject("CollectedKeyCard.Image");
+            CollectedKeyCard.Location = new Point(1103, 43);
+            CollectedKeyCard.Name = "CollectedKeyCard";
+            CollectedKeyCard.Size = new Size(31, 33);
+            CollectedKeyCard.SizeMode = PictureBoxSizeMode.StretchImage;
+            CollectedKeyCard.TabIndex = 65;
+            CollectedKeyCard.TabStop = false;
+            CollectedKeyCard.Tag = "Key";
+            CollectedKeyCard.Visible = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Snap ITC", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(4, 72);
+            label3.Name = "label3";
+            label3.Size = new Size(77, 25);
+            label3.TabIndex = 68;
+            label3.Text = "Armor";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Snap ITC", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(4, 30);
+            label1.Name = "label1";
+            label1.Size = new Size(85, 25);
+            label1.TabIndex = 65;
+            label1.Text = "Health";
+            // 
+            // armorPar
+            // 
+            armorPar.BackColor = SystemColors.AppWorkspace;
+            armorPar.ForeColor = SystemColors.HotTrack;
+            armorPar.Location = new Point(92, 74);
+            armorPar.Name = "armorPar";
+            armorPar.Size = new Size(231, 23);
+            armorPar.TabIndex = 67;
+            armorPar.Tag = "armorPar";
+            // 
+            // healthPar
+            // 
+            healthPar.ForeColor = Color.Firebrick;
+            healthPar.Location = new Point(92, 32);
+            healthPar.Name = "healthPar";
+            healthPar.Size = new Size(231, 23);
+            healthPar.TabIndex = 66;
+            healthPar.Tag = "healthPar";
+            // 
+            // playerPanel
+            // 
+            playerPanel.BackColor = Color.RosyBrown;
+            playerPanel.BorderStyle = BorderStyle.Fixed3D;
+            playerPanel.Image = Properties.Resources.player;
+            playerPanel.Location = new Point(640, 0);
+            playerPanel.Name = "playerPanel";
+            playerPanel.Size = new Size(162, 142);
+            playerPanel.SizeMode = PictureBoxSizeMode.StretchImage;
+            playerPanel.TabIndex = 65;
+            playerPanel.TabStop = false;
+            playerPanel.Tag = "Panel";
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ButtonHighlight;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(1357, 681);
-            Controls.Add(deadHealth);
-            Controls.Add(precent10);
-            Controls.Add(precent50);
-            Controls.Add(precent80);
-            Controls.Add(armorHealth);
-            Controls.Add(label4);
-            Controls.Add(label5);
-            Controls.Add(HealthIcon);
+            Controls.Add(panel1);
+            Controls.Add(keyCard);
+            Controls.Add(DoorKey);
+            Controls.Add(pictureBox15);
+            Controls.Add(wall101);
+            Controls.Add(pictureBox14);
+            Controls.Add(elevator);
             Controls.Add(pictureBox10);
             Controls.Add(pictureBox9);
             Controls.Add(pictureBox8);
@@ -779,12 +1076,8 @@
             Controls.Add(s8);
             Controls.Add(s7);
             Controls.Add(s6);
-            Controls.Add(playerHealthNum);
             Controls.Add(levelNum);
-            Controls.Add(scoreNum);
-            Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(Player);
             Controls.Add(wall8);
             Controls.Add(wall7);
@@ -797,8 +1090,12 @@
             Controls.Add(wall2);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
+            Controls.Add(ElevatorPannel);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Tag = "PlateForm";
             Text = "Hitting Ball";
             KeyDown += DownPressed;
@@ -850,6 +1147,21 @@
             ((System.ComponentModel.ISupportInitialize)precent50).EndInit();
             ((System.ComponentModel.ISupportInitialize)precent10).EndInit();
             ((System.ComponentModel.ISupportInitialize)deadHealth).EndInit();
+            ((System.ComponentModel.ISupportInitialize)elevator).EndInit();
+            ((System.ComponentModel.ISupportInitialize)wall101).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DoorKey).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ElevatorPannel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)keyCard).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox20).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CollectedDoorKey).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CollectedKeyCard).EndInit();
+            ((System.ComponentModel.ISupportInitialize)playerPanel).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -868,9 +1180,7 @@
         private PictureBox wall8;
         private PictureBox Player;
         private System.Windows.Forms.Timer gameTimer;
-        private Label label1;
         private Label label2;
-        private Label label3;
         private Label scoreNum;
         private Label levelNum;
         private Label playerHealthNum;
@@ -905,12 +1215,34 @@
         private PictureBox pictureBox9;
         private PictureBox pictureBox10;
         private PictureBox HealthIcon;
-        private Label label4;
-        private Label label5;
         private PictureBox armorHealth;
         private PictureBox precent80;
         private PictureBox precent50;
         private PictureBox precent10;
         private PictureBox deadHealth;
+        private PictureBox elevator;
+        private PictureBox wall101;
+        private PictureBox pictureBox14;
+        private PictureBox pictureBox15;
+        private PictureBox DoorKey;
+        private PictureBox ElevatorPannel;
+        private PictureBox keyCard;
+        private Panel panel1;
+        private PictureBox playerPanel;
+        private Label label3;
+        private Label label1;
+        private ProgressBar armorPar;
+        private ProgressBar healthPar;
+        private PictureBox pictureBox20;
+        private PictureBox pictureBox19;
+        private PictureBox pictureBox18;
+        private Label label5;
+        private Label label4;
+        private PictureBox CollectedDoorKey;
+        private PictureBox CollectedKeyCard;
+        private Label label9;
+        private Label StregthPerkText;
+        private Label SpeedPerkText;
+        private Label HealthPerkText;
     }
 }

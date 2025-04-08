@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HittingObject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3eb87e5e4d88db9a77fc5cb1cf98ed3b94e1cbdf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b2023b7ddbadc7ce7d3afa618151e8ec6850f689")]
 [assembly: System.Reflection.AssemblyProductAttribute("HittingObject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HittingObject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
